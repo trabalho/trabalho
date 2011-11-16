@@ -1,7 +1,11 @@
-Trabalho enviado 
+		Trabalho de Sistemas Operacionais 2
+	      Desenvolvimento de um Shell para Linux
+
+
 Trabalho idealizado e implementado por:
-Aline Abreu Santos
-Bruno Ribeiro
+
+* Aline Abreu Santos
+* Bruno Ribeiro
 
 
 ______________________________________________________________
@@ -117,11 +121,6 @@ Insere o código de uma tecla no buffer do terminal.
 • static int kbd_connect(struct input_handler *handler, struct input_dev *dev,
 
 const struct input_device_id *id)
-
-Strg
-
-nul
-Escape
 
 É chamada quando um teclado se conecta pela primeira vez ao computador.
 

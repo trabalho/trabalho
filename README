@@ -2,3 +2,199 @@ Trabalho enviado
 Trabalho idealizado e implementado por:
 Aline Abreu Santos
 Bruno Ribeiro
+
+
+______________________________________________________________
+Documentacao sobre topicos relevantes do trabalho:
+
+-->>Teclado no Linux
+
+O processo de transmissão de informações do teclado para o Linux subdivide-se em
+três partes:
+1. Uma tecla é pressionada, o que gera um scancode.
+2. Com o scancode é montado o keycode, que é único para cada tecla.
+3. Os keycodes são convertidos em entradas para o tty usando os mapas de
+caracteres do kernel.
+
+Tecla -> Scancode gerado -> Montagem Keycode -> Encontra caractere
+correspondente ->Coloca na tty -> Gera interrupção -> Programa usa entrada na
+tty
+
+O tty é a parte responsável por gerenciar os dispositivos do computador. É importante
+notar a diferença dos outros para com o teclado. Não basta capturar o sinal e coloca-lo na tty,
+é preciso fazer um processamento prévio de interpretação do foi recebido. Por isso, apesar de
+ser um dispositivo serial, o teclado não é como os outros. Mas, uma vez colocada a entrada
+trabalhada na tty, o processamento restante é feito de forma igual para todos.
+
+-->>Geração do scancode
+
+O funcionamento do teclado começa quando ocorre um evento, que pode ser apertar
+ou soltar uma tecla. Há um microprocessador nele que fica constantemente verificando a
+situação da matriz de teclas à procura de alguma modificação. Isso gera um scancode, que é
+um código dividido em três categorias. Para mudar de categoria escreve-se 0xf0 seguido de
+1, 2 ou 3 na porta 0x60, o que colocará o teclado no modo de scancode 1, 2 ou 3. É possível,
+ainda, enviar 0xf0 seguido de 0, que serve para descobrir em qual modo o teclado se encontra.
+Os retornos possíveis são 0x43, 0x41 e 0x3f.
+
+O modo padrão de scancode é o 2. Nele uma tecla produz o valor v quando
+pressionada, v entre 0x01 e 0x5f. Soltar esta tecla resultará no scancode v + 0x80. O modo
+3 tem códigos quase iguais ao 2, mas apenas as teclas shift de ambos os lados e ctrl e alt
+esquerdas produzem sinais quando soltas. No modo 1 os scancodes para soltura de teclas são
+quase iguais aos do modo 2, mas o pressionamento gera códigos completamente diferentes.
+
+-->>Transformação do scancode em keycode
+
+Apenas no modo 3 há uma correspondência biunívoca entre teclas e scancodes, mas
+o Linux requer que sejam passados tanto os eventos de apertar quanto de soltar da tecla,
+então apenas o modo 3 não é suficiente. A razão é funcionar quando mais de uma tecla é
+pressionada, assim, o processo de transformação é mais complicado.
+
+O kernel precisa converter um fluxo de entrada de scancodes em séries de keycodes
+de aperto e soltura de teclas. Apertar uma tecla pode produzir até seis scancodes, então ele
+precisa procurar por certos padrões para identificar qual foi digitada.
+
+Ao final desta parte, cada evento terá um keycode correspondente. O keycode é
+gerado usando um identificador único u, que está entre 1 e 127 e diz respeito a uma única
+tecla. Quando ela é pressionada, é gerado u, quando ela é solta, é gerado u + 128. O keycode
+0 é reservado para representar o estado de erro e o bit mais significativo significa aperto ou
+soltura. Algumas teclas são exceções e produzem keycodes diferentes quando combinadas
+com outras, como a printscreen e a pause. Isso tem razões históricas e pode mudar no futuro.
+
+-->>Mapas de caracteres
+
+A fase final depende de um mapa de caracteres, que associa cada tecla do teclado a
+um símbolo, é uma tabela que relaciona os códigos. Diferentes mapas são usados no caso de
+modificadores estarem pressionados, como são o shift, ctrl, alt, etc. Já que os modificadores
+que aparecem na esquerda e na direita do teclado são distintos, há 256 mapas possíveis, mas o
+kernel padrão carrega apenas 7. São eles: nenhum modificador, Shift, AltR, Ctrl, Ctrl+Shift, AltL
+and Ctrl+AltL. É possível carregar outros usando uma função chamada loadkeys().
+
+Um exemplo de um pedaço de arquivo de entrada para loadkeys() que define um
+mapa de caracteres:
+
+#           Normal        Shift        AltGr           Strg
+keycode     1 = Escape    Escape
+keycode     2 = one       exclam
+keycode     3 = two       quotedbl     two             null
+keycode     4 = three     numbersign   three           Escape
+keycode     5 = four      dollar
+keycode     6 = five      percent
+keycode     7 = six       ampersand
+keycode     8 = seven     slash        braceleft
+keycode     9 = eight     parenleft    bracketleft
+keycode     10 = nine     parenright   bracketright
+
+control altgr keycode 10 = Control_bracketright
+
+Após a conclusão desta etapa de conversão o caractere obtido é colocado na tty,
+onde é processado como uma entrada serial qualquer. Ele fica disponível esperando por uma
+interrupção, quando pode ser colocado em um shell, documento de texto ou outro programa
+qualquer.
+
+-->>Rotinas envolvidas no processo
+
+• int getkeycode(unsigned int scancode)
+
+Dado um scancode, retorna seu keycode correspondente.
+
+• static void kbd_rawcode(unsigned char data)
+
+Insere os caracteres no buffer em modo RAW, isto é, sem traduzir os scancodes em
+keycodes.
+
+• static void put_queue(struct vc_data *vc, int ch)
+
+Insere um caractere no buffer do terminal.
+
+• static void puts_queue(struct vc_data *vc, char *cp)
+
+Insere uma string no buffer do terminal.
+
+• static void applkey(struct vc_data *vc, int key, char mode)
+
+Insere o código de uma tecla no buffer do terminal.
+
+• static int kbd_connect(struct input_handler *handler, struct input_dev *dev,
+
+const struct input_device_id *id)
+
+Strg
+
+nul
+Escape
+
+É chamada quando um teclado se conecta pela primeira vez ao computador.
+
+• static void kbd_disconnect(struct input_handle *handle)
+
+É chamada quando se desconecta o teclado.
+
+• static void kbd_keycode(unsigned int keycode, int down, int hw_raw)
+
+Insere o keycode no buffer, escolhendo a função correspondente (alguma das
+anteriores).
+
+• static ssize_t tty_read(struct file * file, char __user * buf, size_t count, loff_t *ppos)
+
+Leitura no tty.
+
+-->>Keyloggers
+
+Um keylogger monitora a atividade do teclado, tudo que for digitado será armazenado
+para posterior revisão. Isso pode ser feito usando algum hardware que percebe qual tecla foi
+digitada ou por um software que trata os sinais gerados pelo teclado comum. A abordagem
+deste trabalho é esta última, baseada em software. Os keyloggers por software podem ser
+feitos detectando tudo que entra na porta 0x60, responsável pelo teclado, ou monitorando o
+tty, por exemplo.
+
+As utilidades de keyloggers são diversas, para monitoramento, hack, roubo de
+senhas... Faz-se bom e mal uso deles. É possível fazer keyloggers para Linux que rodem em
+modo usuário ou kernel. Estes modos são caracterizados pelo espaço de memória, que é
+divido em partes. Em uma ficam as funções do sistema, que é o kernel, na outra ficam as
+funções dos programas que o usuário está rodando. Exemplos de keyloggers existentes na
+internet para Linux são: Usuário – LKL (Linux Keylogger); Kernel – vlogger e ttypld.
+
+Costuma-se ter a preocupação de eficiência com esse tipo de programa, porque ele
+fica rodando o tempo inteiro e se fizer diminuir demais o desempenho da máquina incomoda
+e fica mais fácil de ser descoberto.
+
+-->>Modo Usuário
+
+Em geral são feitos lendo a porta de entrada do teclado. Para isso faz-se necessário
+ter privilégios de administrador, mas isso pode ser conseguido de formas escusas, explorando
+falhas de segurança no sistema, caso seja a intenção monitorar sem permissão.
+
+Como roda em modo usuário, keyloggers deste tipo não dependem da arquitetura,
+sendo possível usá-lo em diversas máquinas diferentes. Além disso, têm melhor acesso a
+interfaces de rede e de manipulação no sistema de arquivos.
+
+Por outro lado ele não pode se aproveitar do tratamento das entradas dado pelo
+kernel. Ele deve descobrir qual o mapa de caracteres sendo usado e a interface de teclado, que
+pode ser PS/2 ou USB, por exemplo. Deve ainda distinguir as entradas de teclado com outras,
+como as de mouse, que se misturam na porta de entrada.
+
+-->>Modo Kernel
+
+Eles são bem mais difíceis de implementar, já que são dependentes da versão do
+kernel. Por isso, também, são menos portáveis. Mas são mais difíceis de detectar e retirar do
+sistema. Normalmente são módulos do kernel, já que seria pouco prático recompilá-lo, que
+hackeiam as funções de leitura. Sequer é preciso reiniciar o sistema para instalá-lo. Também
+dependem de privilégios administrativos para rodarem. Podem ser feitos monitorando a
+atividade na tty, a qual o kernel tem acesso.
+
+A vantagem desse tipo de keylogger é que o kernel já faz a distinção da porta de
+teclado, a conversão de caracteres e tudo mais. Então basta guardar o que foi escrito e isso
+ainda torna esse tipo de software mais eficiente, prejudicando menos o desempenho da
+máquina e se tornando ainda mais difícil de detectar.
+
+Como tem acesso a tty pode monitorar a atividade de usuários de diversas formas,
+inclusive pela rede por SSH e telnet. Isso é mais abrangente que keyloggers de modo usuário
+que podem se restringir a entradas pelo teclado no terminal local.
+
+-->>Implementação do keylogger
+
+Keyloggers de modo usuário são mais simples de implementar e não dependem da
+versão do Linux. Além disso, eles não precisam de um desenvolvimento cuidadoso para não
+prejudicar o desempenho da máquina. Então faremos um keylogger deste tipo que monitora
+a porta 0x60, do teclado, buscando por todos os scancodes que entram. Eles serão então
+convertidos em caracteres e gravados em um arquivo.

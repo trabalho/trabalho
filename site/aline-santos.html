@@ -1,0 +1,474 @@
+<title>Aline Santos · Product</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Aline Santos — Senior Product Manager. B2B platforms, process automation and enterprise integrations (SAP, ERP). Porto, Portugal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with a left year-rail; case studies read like entries in an evidence ledger, each with the MODEL · USERS · TECH line from the portfolio system. */
+:root {
+  /* Palette v2 (career design tokens) */
+  --espresso: #0E1624;
+  --charcoal: #1F2937;
+  --peach: #D48B6A;
+  --ink: #9C5536;
+  --clay: #CBB8A0;
+  --sand: #EDE4D9;
+  --slate: #64748B;
+
+  --bg: #FAF9F6;
+  --surface: #F3EEE7;
+  --fg: var(--espresso);
+  --fg-2: var(--charcoal);
+  --muted: #5B6677;
+  --accent-text: var(--ink);
+  --rule: #E2D7C9;
+  --rule-strong: var(--peach);
+  --chip-bg: var(--sand);
+
+  --display: "Bricolage Grotesque", "IBM Plex Sans", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2.125rem;
+  --step-4: clamp(2.75rem, 7vw, 4.75rem);
+  --col: 46rem;
+  --wide: 68rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1624; --surface: #16202F; --fg: #F1ECE5; --fg-2: #E2DBD1; --muted: #9AA6B6;
+    --accent-text: #E3A283; --rule: #263244; --rule-strong: #D48B6A; --chip-bg: #1E2A3B;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1624; --surface: #16202F; --fg: #F1ECE5; --fg-2: #E2DBD1; --muted: #9AA6B6;
+  --accent-text: #E3A283; --rule: #263244; --rule-strong: #D48B6A; --chip-bg: #1E2A3B;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: var(--step-0); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: var(--wide); margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--accent-text); }
+:focus-visible { outline: 2px solid var(--rule-strong); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.eyebrow {
+  font-family: var(--mono); font-size: var(--step--1); letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent-text);
+}
+.meta { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.02em; }
+
+/* Top bar */
+.top { border-bottom: 1px solid var(--rule); }
+.top .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-block: 14px; }
+.top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: var(--step--1); }
+.top nav a { text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--fg); }
+.mark { font-family: var(--display); font-weight: 700; font-size: 1.05rem; text-decoration: none; }
+
+/* Hero */
+.hero .wrap { padding-block: clamp(48px, 9vw, 104px) clamp(40px, 6vw, 72px); display: grid; gap: 28px; }
+.hero h1 { font-size: var(--step-4); line-height: 0.98; font-weight: 700; }
+.hero h1 span { display: block; color: var(--accent-text); }
+.headline { font-family: var(--mono); font-size: 0.86rem; color: var(--fg-2); letter-spacing: 0.01em; max-width: 60ch; }
+.headline b { font-weight: 500; color: var(--accent-text); }
+.thesis { font-size: var(--step-2); line-height: 1.35; max-width: 30ch; font-family: var(--display); font-weight: 500; }
+.hero-foot { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; padding-top: 8px; border-top: 1px solid var(--rule); }
+.hero-foot p { font-size: var(--step--1); color: var(--muted); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px;
+  background: var(--fg); color: var(--bg); border-radius: 3px; text-decoration: none;
+  font-size: var(--step--1); font-weight: 600; border: 0; cursor: pointer; font-family: var(--body);
+}
+.btn:hover { color: var(--bg); background: var(--accent-text); }
+.btn.ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--rule-strong); }
+.btn.ghost:hover { color: var(--accent-text); }
+
+/* Sections */
+section { border-top: 1px solid var(--rule); }
+.sec { padding-block: clamp(48px, 7vw, 88px); display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 24px 48px; }
+.sec > header { display: grid; gap: 8px; align-content: start; }
+.sec > header h2 { font-size: var(--step-2); line-height: 1.15; }
+.sec > header p { font-size: var(--step--1); color: var(--muted); }
+.body { min-width: 0; }
+@media (max-width: 760px) { .sec { grid-template-columns: minmax(0, 1fr); } }
+
+/* Value strip */
+.figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--rule-strong); }
+.fig { padding: 20px 20px 22px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 6px; align-content: start; }
+.fig:not(:nth-child(3n+1)) { padding-left: 20px; border-left: 1px solid var(--rule); }
+.fig .n { font-family: var(--display); font-weight: 700; font-size: var(--step-3); line-height: 1; font-variant-numeric: tabular-nums; }
+.fig .l { font-size: 0.92rem; line-height: 1.4; color: var(--fg-2); }
+.fig .src { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+@media (max-width: 760px) {
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fig, .fig:not(:nth-child(3n+1)) { padding: 18px 14px 18px 0; border-left: 0; }
+  .fig:nth-child(2n) { padding-left: 14px; border-left: 1px solid var(--rule); }
+}
+.note { margin-top: 18px; font-size: var(--step--1); color: var(--muted); max-width: 62ch; }
+
+/* Thesis / arc */
+.arc { display: grid; gap: 20px; max-width: var(--col); }
+.arc p { font-size: var(--step-1); line-height: 1.55; }
+.arc ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; border-left: 2px solid var(--rule-strong); }
+.arc li { padding: 8px 0 8px 18px; display: grid; grid-template-columns: 7.5rem minmax(0,1fr); gap: 12px; font-size: 0.95rem; }
+.arc li .meta { padding-top: 3px; }
+@media (max-width: 480px) { .arc li { grid-template-columns: minmax(0,1fr); gap: 2px; } }
+
+/* Cases */
+.cases { display: grid; gap: 0; }
+.case { padding-block: 32px; border-bottom: 1px solid var(--rule); display: grid; gap: 14px; }
+.case:first-child { padding-top: 0; }
+.case-head { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; justify-content: space-between; }
+.case h3 { font-size: var(--step-2); line-height: 1.15; }
+.case .org { font-family: var(--mono); font-size: 0.78rem; color: var(--accent-text); letter-spacing: 0.04em; text-transform: uppercase; }
+.mut { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); letter-spacing: 0.02em; line-height: 1.5; }
+.mut b { font-weight: 500; color: var(--fg-2); }
+.case-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 32px; }
+.case-grid div { min-width: 0; }
+.case-grid h4 { margin: 0 0 4px; font-size: var(--step--1); font-weight: 600; color: var(--accent-text); letter-spacing: 0.02em; }
+.case-grid p, .case-grid li { font-size: 0.95rem; color: var(--fg-2); }
+.case-grid ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.outcome { grid-column: 1 / -1; background: var(--surface); padding: 14px 16px; border-radius: 3px; display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: baseline; }
+.outcome strong { font-family: var(--display); font-size: var(--step-1); font-weight: 700; font-variant-numeric: tabular-nums; }
+.outcome span { font-size: var(--step--1); color: var(--muted); }
+@media (max-width: 760px) { .case-grid { grid-template-columns: minmax(0,1fr); } }
+
+/* Experience */
+.roles { display: grid; }
+.role { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 16px; padding-block: 18px; border-bottom: 1px solid var(--rule); }
+.role:first-child { padding-top: 0; }
+.role .yr { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.role h3 { font-size: var(--step-1); font-weight: 700; }
+.role h3 small { font-family: var(--body); font-weight: 400; font-size: 0.95rem; color: var(--muted); }
+.role p { font-size: 0.95rem; color: var(--fg-2); margin-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { font-family: var(--mono); font-size: 0.72rem; padding: 3px 8px; background: var(--chip-bg); border-radius: 2px; color: var(--fg-2); }
+@media (max-width: 480px) { .role { grid-template-columns: minmax(0,1fr); gap: 4px; } }
+
+/* Method */
+.method { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; }
+.method div { min-width: 0; display: grid; gap: 6px; align-content: start; }
+.method h3 { font-size: var(--step-1); }
+.method p { font-size: 0.95rem; color: var(--fg-2); }
+@media (max-width: 760px) { .method { grid-template-columns: minmax(0,1fr); } }
+
+/* Skills table */
+.tbl { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--mono); font-weight: 500; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--rule-strong); }
+td:first-child { font-weight: 600; white-space: nowrap; padding-right: 24px; }
+td { color: var(--fg-2); }
+
+/* Education */
+.edu { display: grid; gap: 14px; }
+.edu div { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 4px 16px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+.edu b { font-weight: 600; }
+.edu span { color: var(--muted); font-size: 0.92rem; }
+.edu .meta { text-align: right; padding-top: 3px; }
+@media (max-width: 480px) { .edu div { grid-template-columns: minmax(0,1fr); } .edu .meta { text-align: left; } }
+
+/* Contact */
+.contact .wrap { padding-block: clamp(56px, 8vw, 96px); display: grid; gap: 20px; }
+.contact h2 { font-size: var(--step-3); max-width: 20ch; line-height: 1.1; }
+.contact p { max-width: 58ch; color: var(--fg-2); }
+.contact-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.addr { font-family: var(--mono); font-size: 0.95rem; user-select: all; padding: 9px 12px; background: var(--surface); border-radius: 3px; }
+footer { border-top: 1px solid var(--rule); }
+footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1, .thesis, .headline { animation: rise .6s ease-out both; }
+  .thesis { animation-delay: .08s; }
+  .headline { animation-delay: .14s; }
+  @keyframes rise { from { transform: translateY(8px); opacity: .001; } to { transform: none; opacity: 1; } }
+}
+</style>
+
+<div class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Aline Santos</a>
+    <nav aria-label="Sections">
+      <a href="#value">Value</a>
+      <a href="#work">Selected work</a>
+      <a href="#experience">Experience</a>
+      <a href="#method">How I work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Senior Product Manager · Porto, Portugal</p>
+      <h1>Aline Santos<span>makes complex operations simple.</span></h1>
+      <p class="thesis">11+ years turning supplier finance, banking and engineering workflows into digital products people adopt, connecting the business case, the integrations and the rollout.</p>
+      <p class="headline"><b>B2B Platforms &amp; Process Automation</b> · Enterprise Integrations (SAP, ERP) · PSPO II</p>
+      <div class="hero-foot">
+        <a class="btn" href="#work">See selected work</a>
+        <a class="btn ghost" href="https://linkedin.com/in/alinesantospro" target="_blank" rel="noopener">LinkedIn</a>
+        <p>Open to Senior PM roles · remote or hybrid · international teams</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="value">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">Value &amp; scale</p>
+        <h2>What the products moved</h2>
+        <p>Each figure names the product and who it belongs to.</p>
+      </header>
+      <div class="body">
+        <div class="figures">
+          <div class="fig"><span class="n">€780K</span><span class="l">annual saving from the Partner Connect supplier portal</span><span class="src">Worten · programme, annualised</span></div>
+          <div class="fig"><span class="n">2,300</span><span class="l">partner companies on the supplier portal</span><span class="src">Worten · product reach</span></div>
+          <div class="fig"><span class="n">+47%</span><span class="l">efficiency in accounts payable</span><span class="src">Worten · Partner Connect</span></div>
+          <div class="fig"><span class="n">+34%</span><span class="l">account acquisition through digital onboarding, with −28% invalid account reports</span><span class="src">Itaú · Digital Account Opening</span></div>
+          <div class="fig"><span class="n">70%</span><span class="l">of conversations resolved without a human agent</span><span class="src">Itaú · WhatsApp AI Assistant + AVI</span></div>
+          <div class="fig"><span class="n">16h → 3h</span><span class="l">to produce a UAT report, after standardising the QA workflow</span><span class="src">BERD · Engineering Lifecycle Platform</span></div>
+        </div>
+        <p class="note">Savings are annualised programme savings, not revenue. Partner companies, users and interactions are different populations and are never added together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="arc">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">The through-line</p>
+        <h2>One problem, four industries</h2>
+      </header>
+      <div class="body arc">
+        <p>I started in enterprise pre-sales, where I learned how software is bought and why it gets stuck in operations. Since then I have built products where the hard part sits between systems and teams: identity checks in a bank, supplier invoices in an ERP, test findings across three engineering vendors.</p>
+        <ol>
+          <li><span class="meta">2012 – 2014</span><span>Enterprise pre-sales at Ícaro and TOTVS: ITSM, CRM, BPM and analytics.</span></li>
+          <li><span class="meta">2014 – 2017</span><span>Itaú Unibanco: digital banking and conversational AI for millions of customers.</span></li>
+          <li><span class="meta">2018 – 2020</span><span>Cogitant: co-founded a support-automation SaaS and took it from zero to a tested MVP.</span></li>
+          <li><span class="meta">2022 – 2025</span><span>Worten: a supplier ecosystem on SAP, plus two internal products in parallel.</span></li>
+          <li><span class="meta">2025 – 2026</span><span>BERD: an engineering lifecycle SaaS, from UAT to final launch.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">Selected work</p>
+        <h2>Five products, in detail</h2>
+        <p>Challenge, decisions, constraints and outcome. Confidential figures stay out.</p>
+      </header>
+      <div class="body cases">
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Partner Connect</h3>
+            <span class="org">Worten · 2022 – 2025</span>
+          </div>
+          <p class="mut"><b>MODEL</b> B2B · <b>USERS</b> supplier companies, finance and procurement teams · <b>TECH</b> SAP S/4HANA, MDM, OutSystems</p>
+          <div class="case-grid">
+            <div><h4>Challenge</h4><p>Supplier onboarding, documents and invoice questions ran through email and manual handling in finance, with every answer depending on data held in SAP.</p></div>
+            <div><h4>Product</h4><p>A self-service supplier portal: onboarding, document exchange, invoice and payment status, integrated with the ERP and master data.</p></div>
+            <div><h4>Decisions</h4><ul><li>Shaped the business case that funded the programme.</li><li>Ran discovery in three waves before committing scope.</li><li>Prioritised the flows with the highest manual load in accounts payable.</li></ul></div>
+            <div><h4>Team &amp; dependencies</h4><p>17-person squad, SAP and integration teams, finance operations and external partners.</p></div>
+            <div class="outcome"><strong>€780K / year</strong><span>annualised saving</span><strong>+47%</strong><span>accounts-payable efficiency</span><strong>2,300</strong><span>partner companies</span></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Digital Account Opening</h3>
+            <span class="org">Itaú Unibanco · 2015 – 2016</span>
+          </div>
+          <p class="mut"><b>MODEL</b> B2C · <b>USERS</b> new retail banking customers · <b>TECH</b> OCR, biometrics, antifraud and compliance services</p>
+          <div class="case-grid">
+            <div><h4>Challenge</h4><p>Opening an account required a branch visit. The bank needed a remote flow that still met identity, compliance and antifraud requirements.</p></div>
+            <div><h4>Product</h4><p>An end-to-end mobile onboarding journey with document capture (OCR) and biometric identity checks.</p></div>
+            <div><h4>Decisions</h4><ul><li>Designed the journey ahead of the Central Bank rules that later regulated digital accounts.</li><li>Released first to selected leads in a controlled launch, then opened to the public.</li></ul></div>
+            <div><h4>Dependencies</h4><p>Compliance, legal, fraud prevention and core-banking teams.</p></div>
+            <div class="outcome"><strong>+34%</strong><span>account acquisition</span><strong>−28%</strong><span>invalid account reports</span></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Engineering Lifecycle Platform</h3>
+            <span class="org">BERD · 2025 – 2026</span>
+          </div>
+          <p class="mut"><b>MODEL</b> B2B SaaS · <b>USERS</b> engineering teams, 5 beta customers · <b>TECH</b> web platform built by 3 vendors; ChatGPT and Claude in product workflows</p>
+          <div class="case-grid">
+            <div><h4>Challenge</h4><p>Thirteen workstreams and three delivery vendors had to converge on one product, with no shared standard for findings, UI copy or acceptance.</p></div>
+            <div><h4>Product</h4><p>A SaaS platform for the engineering lifecycle, released to beta customers and launched in November 2026.</p></div>
+            <div><h4>Decisions</h4><ul><li>Set six operating standards for QA, findings and acceptance.</li><li>Tracked 70+ findings through UAT to closure.</li><li>Merged three Figma environments into one and standardised 197 UI strings across ~40 screens.</li><li>Built 24 AI-assisted skills for requirements, documentation and QA.</li></ul></div>
+            <div><h4>Team &amp; dependencies</h4><p>13-person delivery team across 3 vendors, 15 stakeholders, 29 user flows, 42 components.</p></div>
+            <div class="outcome"><strong>16h → 3h</strong><span>to produce a UAT report</span><strong>13</strong><span>workstreams aligned (9 functional, 4 cross-cutting)</span></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>WhatsApp AI Assistant + AVI</h3>
+            <span class="org">Itaú Unibanco · 2017</span>
+          </div>
+          <p class="mut"><b>MODEL</b> B2C · <b>USERS</b> card and banking customers · <b>TECH</b> conversational AI on WhatsApp and in-app, service-centre integration</p>
+          <div class="case-grid">
+            <div><h4>Challenge</h4><p>Service volume was growing faster than the contact centre. Customers wanted answers in the channels they already used.</p></div>
+            <div><h4>Product</h4><p>One assistant on two channels: WhatsApp and the in-app virtual assistant (AVI), with authentication and handover to a human agent.</p></div>
+            <div><h4>Decisions</h4><p>Defined intents, training data and conversation flows, set escalation rules, and ran output QA before each release.</p></div>
+            <div><h4>Dependencies</h4><p>Service centre, security and channel teams.</p></div>
+            <div class="outcome"><strong>70%</strong><span>of conversations resolved without an agent</span></div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case-head">
+            <h3>Cogitant</h3>
+            <span class="org">Co-Founder &amp; Product Lead · 2018 – 2020</span>
+          </div>
+          <p class="mut"><b>MODEL</b> B2B2C · <b>USERS</b> online retailers and their shoppers · <b>TECH</b> conversational SaaS; Loja Integrada, Shopify and VTEX integrations</p>
+          <div class="case-grid">
+            <div><h4>Challenge</h4><p>Small online retailers lost sales and support hours answering the same customer questions by hand.</p></div>
+            <div><h4>Product</h4><p>A support-automation SaaS plugged into e-commerce platforms, answering shoppers in context.</p></div>
+            <div><h4>Decisions</h4><p>Chose which e-commerce platforms to integrate first, cut scope to reach a testable MVP in under five months, and ran beta with real stores.</p></div>
+            <div><h4>Team</h4><p>6-person founding team.</p></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">Experience</p>
+        <h2>Roles and products</h2>
+      </header>
+      <div class="body roles">
+        <div class="role"><span class="yr">2025 – 2026</span><div><h3>BERD <small>· Product Manager</small></h3><p>Engineering Lifecycle Platform. UAT governance, operating standards and AI-assisted product workflows through final launch.</p><div class="chips"><span class="chip">B2B SaaS</span><span class="chip">UAT</span><span class="chip">Design system</span><span class="chip">Applied AI</span></div></div></div>
+        <div class="role"><span class="yr">2022 – 2025</span><div><h3>Worten <small>· Product Manager</small></h3><p>Partner Connect (supplier portal on SAP), Digitalism (employee intranet, +174% monthly users vs. the previous intranet) and Order It (internal B2E product), run in parallel.</p><div class="chips"><span class="chip">B2B</span><span class="chip">B2E</span><span class="chip">SAP S/4HANA</span><span class="chip">Business case</span></div></div></div>
+        <div class="role"><span class="yr">2018 – 2020</span><div><h3>Cogitant <small>· Co-Founder &amp; Product Lead</small></h3><p>Support-automation SaaS for e-commerce, from zero to MVP and beta.</p><div class="chips"><span class="chip">B2B2C</span><span class="chip">0 → 1</span><span class="chip">Integrations</span></div></div></div>
+        <div class="role"><span class="yr">2014 – 2017</span><div><h3>Itaú Unibanco <small>· Product Manager / Product Owner</small></h3><p>Four products: APP Seguros, Digital Account Opening, Social Media &amp; Complaints (+35 NPS points), and the WhatsApp AI Assistant + AVI.</p><div class="chips"><span class="chip">B2C</span><span class="chip">Digital banking</span><span class="chip">Conversational AI</span><span class="chip">Compliance</span></div></div></div>
+        <div class="role"><span class="yr">2013 – 2014</span><div><h3>TOTVS <small>· Pre-sales Solutions Consultant</small></h3><p>Enterprise CRM, BPM and analytics solutions.</p></div></div>
+        <div class="role"><span class="yr">2012 – 2013</span><div><h3>Ícaro Technologies <small>· Pre-sales Solutions Intern</small></h3><p>ITSM and infrastructure solutions.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">How I work</p>
+        <h2>Practices I bring to a team</h2>
+      </header>
+      <div class="body method">
+        <div><h3>Business case before backlog</h3><p>I size the operational cost first, then decide scope. Partner Connect was funded on a business case I shaped.</p></div>
+        <div><h3>Discovery in waves</h3><p>Short discovery rounds with the people who carry the manual work, so scope follows evidence rather than the loudest request.</p></div>
+        <div><h3>Integrations as product</h3><p>ERP, master data, identity and service-centre integrations are part of the user experience. I write them into the journey from day one.</p></div>
+        <div><h3>Quality you can audit</h3><p>Shared standards for findings, acceptance and UI copy, so several vendors ship like one team.</p></div>
+        <div><h3>Applied AI with guardrails</h3><p>Conversational products (intents, training data, flows, output QA) and AI-assisted workflows for requirements, documentation and QA.</p></div>
+        <div><h3>Adoption is the outcome</h3><p>Launch plans, change management and metrics that show whether people actually switched.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">Capabilities</p>
+        <h2>Where I add the most</h2>
+      </header>
+      <div class="body tbl">
+        <table>
+          <thead><tr><th>Area</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>B2B platforms</td><td>Supplier portal for 2,300 partner companies; engineering SaaS with beta customers</td></tr>
+            <tr><td>Process automation</td><td>Accounts payable (+47% efficiency); conversational service (70% without an agent)</td></tr>
+            <tr><td>Enterprise integrations</td><td>SAP S/4HANA, MDM, OutSystems; core banking, identity and antifraud services</td></tr>
+            <tr><td>Product discovery</td><td>Three-wave discovery at Worten; beta programmes at BERD and Cogitant</td></tr>
+            <tr><td>Delivery governance</td><td>13 workstreams, 3 vendors, 6 operating standards, 70+ tracked findings</td></tr>
+            <tr><td>Product models</td><td>B2B, B2C, B2B2C and B2E products shipped</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap sec">
+      <header>
+        <p class="eyebrow">Education</p>
+        <h2>Education &amp; certifications</h2>
+      </header>
+      <div class="body edu">
+        <div><p><b>Professional Scrum Product Owner II (PSPO II)</b> <span>· Scrum.org</span></p><span class="meta">Certification</span></div>
+        <div><p><b>Certified Scrum Product Owner (CSPO)</b></p><span class="meta">Certification</span></div>
+        <div><p><b>MBA</b> <span>· Universidade de São Paulo (USP)</span></p><span class="meta">2014 – 2015</span></div>
+        <div><p><b>BSc</b> <span>· Universidade de São Paulo (USP) · major in UX Design, minor in Technical Sales</span></p><span class="meta">2008 – 2013</span></div>
+        <div><p><b>BA in Fine Arts</b> <span>· Universidade do Porto (FBAUP) · major in Multimedia, not completed</span></p><span class="meta">2020 – 2022</span></div>
+        <div><p><b>Strategic Thinking</b> <span>· SUNY</span></p><span class="meta">2018</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h2>Hiring a Senior Product Manager?</h2>
+      <p>I am based in Porto and work remotely or hybrid with international teams. I am looking for a long-term role with real product ownership in B2B platforms, automation or complex enterprise products.</p>
+      <div class="contact-row">
+        <span class="addr" id="email">hey@alinesantos.pro</span>
+        <button class="btn" id="copy" type="button">Copy email</button>
+        <a class="btn ghost" href="https://linkedin.com/in/alinesantospro" target="_blank" rel="noopener">linkedin.com/in/alinesantospro</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="meta">Aline Santos · Senior Product Manager · Porto, Portugal</span>
+    <span class="meta">Figures are attributed to the product or programme they belong to.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var addr = document.getElementById('email');
+  if (!btn || !addr) return;
+  btn.addEventListener('click', function () {
+    var text = addr.textContent.trim();
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(addr);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected — press Ctrl/Cmd+C';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
+      }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+})();
+</script>
